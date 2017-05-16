@@ -32,9 +32,9 @@ Memo1->Clear();
 if( root == NULL ){
 ShowMessage(" Create TREE !");
 }else {
-		  Memo1->Lines->Add("---------- View -----------");
-		  obj.View_Tree(root, 0, Memo1);
-	  }
+           Memo1->Lines->Add("---------- View -----------");
+	   obj.View_Tree(root, 0, Memo1);
+      }
 }
 //---------------------------------------------------------------------------
 
