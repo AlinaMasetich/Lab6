@@ -19,8 +19,9 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender) //Создать
 {
-    if(root != NULL) obj.Del_Tree(root);
-	root = obj.List (StrToInt(Edit1->Text));
+    if(root != NULL) 
+        obj.Del_Tree(root);
+    root = obj.List (StrToInt(Edit1->Text));
     Button3Click(Sender);
     Edit1->Clear();
 }
