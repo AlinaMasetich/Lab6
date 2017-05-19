@@ -39,7 +39,7 @@ Tree* A::List(int inf)//Формирование дерева поиска
 
 void A::Add_List(Tree *root, int key)//Добавление узла
 {
-    Tree *prev, *node;
+    Tree*prev,*node;
     bool find = true;
     node = root;
     while (node && find) {
