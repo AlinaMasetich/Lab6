@@ -17,7 +17,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     Memo1->Clear();
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Button1Click(TObject *Sender) //Создать
+void __fastcall TForm1::Button1Click(TObject *Sender) //Создать дерево
 {
     if(root != NULL) 
         obj.Del_Tree(root);
@@ -27,7 +27,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender) //Создать
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button3Click(TObject *Sender) //Просмотреть
+void __fastcall TForm1::Button3Click(TObject *Sender) //Просмотреть дерево
 {
     Memo1->Clear();
     if (root == NULL) {
@@ -39,7 +39,7 @@ void __fastcall TForm1::Button3Click(TObject *Sender) //Просмотреть
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button2Click(TObject *Sender) //Добавить
+void __fastcall TForm1::Button2Click(TObject *Sender) //Добавить узел
 {
      if (root == NULL) { 
          root = obj.List (StrToInt(Edit1->Text));
@@ -53,7 +53,7 @@ void __fastcall TForm1::Button2Click(TObject *Sender) //Добавить
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Button4Click(TObject *Sender) //Удалить узел
+void __fastcall TForm1::Button4Click(TObject *Sender) //Удалить заданный узел
 {
     int Del_Node = StrToInt(Form1->Edit1->Text);
     root = obj.Del_Info(root, Del_Node);
@@ -84,7 +84,7 @@ void __fastcall TForm1::Button7Click(TObject *Sender) //Кол-во листье
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button8Click(TObject *Sender) //Удалить дерево
+void __fastcall TForm1::Button8Click(TObject *Sender) //Удалить дерево целиком
 {
     obj.Del_Tree(root);
     Memo1->Clear();
