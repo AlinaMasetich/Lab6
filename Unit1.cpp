@@ -29,7 +29,7 @@ Edit1->Clear();
 void __fastcall TForm1::Button3Click(TObject *Sender) //Просмотреть
 {
 Memo1->Clear();
-if( root == NULL ){
+if (root == NULL) {
 ShowMessage(" Create TREE !");
 }else {
            Memo1->Lines->Add("---------- View -----------");
