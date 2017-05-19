@@ -49,10 +49,10 @@ void A::Add_List(Tree *root, int key)//Добавление узла
 	    ShowMessage("Dublucate Key!");
 	}else if (key < node->info) {
 	        node = node->left;
-	}else {
-	    node = node->right;
-	}
-    }
+	      }else {
+	           node = node->right;
+	      }
+        }
 }
     if (find) {
 	node = List(key);
