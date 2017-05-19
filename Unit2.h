@@ -1,4 +1,4 @@
-﻿//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 
 #ifndef Unit2H
 #define Unit2H
@@ -10,7 +10,7 @@
 //---------------------------------------------------------------------------
 #endif
 
-struct Tree{
+struct Tree {
 	int info;
 	Tree *left, *right;
 }*root;
@@ -43,13 +43,13 @@ void A::Add_List(Tree *root, int key)//Добавление узла
 Tree *prev, *node;
  bool find = true;
 		node = root;
-		while ( node && find){
+		while (node && find) {
 			prev = node;
-			if( key == node->info){
+			if (key == node->info) {
 				find = false;
 				ShowMessage("Dublucate Key!");
 			}else {
-				if ( key < node -> info ){
+				if (key < node -> info) {
 					node = node -> left;
 				}else {
 					node = node -> right;
@@ -57,22 +57,22 @@ Tree *prev, *node;
 			}
 		}
 
-		if (find){
-		node = List(key);
-		if ( key < prev -> info ){
-			prev -> left = node;
-		}else {
-			prev -> right = node;
-		}
+		if (find) {
+			node = List(key);
+			if (key < prev -> info) {
+				prev -> left = node;
+			}else {
+				prev -> right = node;
+			}
 		}
 }
 
 void A::View_Tree(Tree *print, int level, TMemo *Memo1 )//Вывод дерева на экран
 {
 String str_level;
-	if ( print ){
+	if (print) {
 		View_Tree (print -> right , level+1, Memo1);
-		for ( int i=0; i<level; i++) str_level = str_level + "    ";
+		for (int i=0; i<level; i++) str_level = str_level + "    ";
 				Memo1->Lines->Add(str_level + IntToStr(print->info));
 		View_Tree(print -> left , level+1, Memo1);
 	}
@@ -80,7 +80,7 @@ String str_level;
 
 void A::Del_Tree(Tree *Del)//Очистить память(удалить дерево целиком)
 {
-	if ( Del != NULL){
+	if (Del != NULL) {
 		Del_Tree ( Del -> left);
 		Del_Tree ( Del -> right);
 		delete Del;
@@ -94,35 +94,34 @@ Tree *Del, *Prev_Del, *Node, *Prev_Node;
 // Node, Prev_Node – элемент, на который заменяется удаленный, и его предок;
 Del = root;
 Prev_Del = NULL;
-	while (Del != NULL && Del -> info != key)
-	{
+	while (Del != NULL && Del -> info != key) {
 		Prev_Del = Del;
-		if (Del->info > key){
+		if (Del->info > key) {
 			Del = Del->left;
 		}else {
 			Del = Del->right;
 		}
 	}
 
-	if (Del == NULL){
+	if (Del == NULL) {
 		ShowMessage ( "NOT Key!");
 			return root;
 	}
 
-	if (Del -> right == NULL){
+	if (Del -> right == NULL) {
 	   Node = Del->left;//Поиск элемента Node для замены
 	}else
-		if (Del -> left == NULL){
+		if (Del -> left == NULL) {
 			Node = Del->right;
 		}else {
 			Prev_Node = Del;//Ищем самый правый узел в левом поддереве
 			Node = Del->left;
-			while (Node->right != NULL){
+			while (Node->right != NULL) {
 				Prev_Node = Node;
 				Node = Node->right;
 			}
 
-			if( Prev_Node == Del){
+			if( Prev_Node == Del) {
 				Node->right = Del->right;// Нашли элемент для замены Node и его предка Prev_Node
 			}else {
 				Node->right = Del->right;
@@ -130,10 +129,10 @@ Prev_Del = NULL;
 				Node->left = Prev_Node;
 			}
 		}
-	if (Del== root){
+	if (Del== root) {
 	   root = Node;
 	}else
-		if (Del->info < Prev_Del->info){//Поддерево R присоединяем к предку удаляемого узла
+		if (Del->info < Prev_Del->info)  {//Поддерево R присоединяем к предку удаляемого узла
 			Prev_Del->left = Node;
 		   }else {
 				Prev_Del->right = Node;
@@ -182,8 +181,6 @@ if (root->right)
 if (root->left)
    Right_Order(root->left, Memo1);
 }
-
-
 
 
 
