@@ -47,17 +47,16 @@ void A::Add_List(Tree *root, int key)//Добавление узла
 	if (key == node->info) {
 	    find = false;
 	    ShowMessage("Dublucate Key!");
-	}else {
-	    if (key < node->info) {
+	}else if (key < node->info) {
 	        node = node->left;
-		}else {
-		    node = node->right;
-		}
+	}else {
+	    node = node->right;
 	}
+    }
 }
     if (find) {
 	node = List(key);
-	if (key < prev -> info) {
+	if (key < prev->info) {
        	    prev->left = node;
 	}else {
 	    prev->right = node;
@@ -69,8 +68,9 @@ void A::View_Tree(Tree *print, int level, TMemo *Memo1 )//Вывод дерев�
 {
     String str_level;
     if (print) {
-        View_Tree (print -> right , level+1, Memo1);
-	for (int i=0; i<level; i++) str_level = str_level + "    ";
+        View_Tree (print->right , level+1, Memo1);
+	for (int i=0; i<level; i++) 
+	    str_level = str_level + "    ";
 	Memo1->Lines->Add(str_level + IntToStr(print->info));
 	View_Tree(print->left, level+1, Memo1);
      }
@@ -79,8 +79,8 @@ void A::View_Tree(Tree *print, int level, TMemo *Memo1 )//Вывод дерев�
 void A::Del_Tree(Tree *Del)//Очистить память(удалить дерево целиком)
 {
     if (Del != NULL) {
-	Del_Tree ( Del->left);
-        Del_Tree ( Del->right);
+	Del_Tree (Del->left);
+        Del_Tree (Del->right);
 	delete Del;
      }
 }
@@ -106,32 +106,30 @@ Tree* A::Del_Info(Tree *root, int key)//Удаление заданного уз
     }
     if (Del->right == NULL) {
         Node = Del->left;//Поиск элемента Node для замены
-    }else
-	if (Del->left == NULL) {
-	    Node = Del->right;
-	}else {
-       	    Prev_Node = Del;//Ищем самый правый узел в левом поддереве
-	    Node = Del->left;
-	    while (Node->right != NULL) {	
-                Prev_Node = Node;
-		Node = Node->right;
-	     }
-	    if (Prev_Node == Del) {
-	        Node->right = Del->right;// Нашли элемент для замены Node и его предка Prev_Node
-	    }else {
-                Node->right = Del->right;
-		Prev_Node->right = Node->left;
-		Node->left = Prev_Node;
-       	    }
+    }else if (Del->left == NULL) {
+              Node = Del->right;
+          }else {
+       	      Prev_Node = Del;//Ищем самый правый узел в левом поддереве
+	      Node = Del->left;
+	      while (Node->right != NULL) {	
+                  Prev_Node = Node;
+		  Node = Node->right;
+	      }
+	      if (Prev_Node == Del) {
+	          Node->right = Del->right;// Нашли элемент для замены Node и его предка Prev_Node
+	      }else {
+                  Node->right = Del->right;
+		  Prev_Node->right = Node->left;
+		  Node->left = Prev_Node;
+       	      }
 	}
     if (Del == root) {
         root = Node;
-    }else
-	if (Del->info < Prev_Del->info)  {//Поддерево R присоединяем к предку удаляемого узла
+    }else if (Del->info < Prev_Del->info) {//Поддерево R присоединяем к предку удаляемого узла
 	    Prev_Del->left = Node;
-	}else {
-	    Prev_Del->right = Node;
-	}
+    }else {
+        Prev_Del->right = Node;
+    }
     delete Del;
     return root;
 }
