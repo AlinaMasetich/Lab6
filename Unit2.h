@@ -86,7 +86,7 @@ Tree* A::Del_Info(Tree *root, int key)//Удаление заданного уз
     Prev_Del = NULL;
     while (Del != NULL && Del->info != key) {
 	Prev_Del = Del;
-	Del->info > key?Del = Del->left:Del = Del->right;
+	Del = del->info > key? Del->left : Del->right;
     }
     if (Del == NULL) {
 	ShowMessage ( "NOT Key!");
