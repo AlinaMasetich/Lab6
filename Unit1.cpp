@@ -30,12 +30,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender) //Создать дере�
 void __fastcall TForm1::Button3Click(TObject *Sender) //Просмотреть дерево
 {
     Memo1->Clear();
-    if (root == NULL) {
-        ShowMessage(" Create TREE !");
-    }else {
-        Memo1->Lines->Add("---------- View -----------");
-        obj.View_Tree(root, 0, Memo1);
-    }
+    root == NULL ? ShowMessage(" Create TREE !") : obj.View_Tree(root, 0, Memo1);
 }
 //---------------------------------------------------------------------------
 
