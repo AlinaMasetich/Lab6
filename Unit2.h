@@ -47,19 +47,11 @@ void A::Add_List(Tree *root, int key)//Добавление узла
 	if (key == node->info) {
 	    find = false;
 	    ShowMessage("Dublucate Key!");
-	}else if (key < node->info) {
-	        node = node->left;
-	      }else {
-	           node = node->right;
-	      }
-        }
+	}else key < prev->info?node = prev->left:node = prev->right;
 }
     if (find) {
 	node = List(key);
-	if (key < prev->info) {
-       	    prev->left = node;
-	}else {
-	    prev->right = node;
+	(key < prev->info?prev->left:prev->right) = node;
 	}
     }
 }
@@ -94,11 +86,7 @@ Tree* A::Del_Info(Tree *root, int key)//Удаление заданного уз
     Prev_Del = NULL;
     while (Del != NULL && Del->info != key) {
 	Prev_Del = Del;
-	if (Del->info > key) {
-	    Del = Del->left;
-	}else {
-	    Del = Del->right;
-	}
+	Del->info > key?Del = Del->left:Del = Del->right;
     }
     if (Del == NULL) {
 	ShowMessage ( "NOT Key!");
@@ -123,13 +111,9 @@ Tree* A::Del_Info(Tree *root, int key)//Удаление заданного уз
 		  Node->left = Prev_Node;
        	      }
 	}
-    if (Del == root) {
+    if (Del == root) {//Поддерево R присоединяем к предку удаляемого узла
         root = Node;
-    }else if (Del->info < Prev_Del->info) {//Поддерево R присоединяем к предку удаляемого узла
-	    Prev_Del->left = Node;
-    }else {
-        Prev_Del->right = Node;
-    }
+    }else (Del->info < Prev_Del->info:Prev_Del->left:Prev_Del->right) = Node;
     delete Del;
     return root;
 }
